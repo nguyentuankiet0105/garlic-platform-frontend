@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { getSession, homeFor } from "@/features/auth/server";
+import { ThemeToggle } from "@/shared/components/theme-toggle";
 import { ROUTES } from "@/shared/config/routes";
 import { ButtonLink, Container, Logo } from "@/shared/ui";
 import { STOREFRONT_NAV } from "../config/nav";
@@ -23,6 +24,7 @@ export async function StorefrontHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           {session ? (
             <ButtonLink href={homeFor(session.role)} size="sm">
               Vào khu làm việc

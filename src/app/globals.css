@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark mode điều khiển bằng class .dark trên <html> (xem ThemeProvider),
+   không phụ thuộc prefers-color-scheme nữa để hỗ trợ nút toggle thủ công. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ==========================================================================
    DESIGN TOKENS — theme "teal"
    Lớp 1: palette thô (brand / garlic / ink / trạng thái)
@@ -79,22 +83,20 @@
   --sidebar-active: var(--color-brand-800);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-ink-950);
-    --foreground: var(--color-ink-100);
-    --card: var(--color-ink-900);
-    --card-foreground: var(--color-ink-100);
-    --muted: var(--color-ink-800);
-    --muted-foreground: var(--color-ink-300);
-    --border: var(--color-ink-700);
-    --primary: var(--color-brand-500);
-    --primary-hover: var(--color-brand-400);
-    --primary-foreground: var(--color-brand-950);
-    --primary-soft: color-mix(in oklab, var(--color-brand-500) 14%, transparent);
-    --primary-soft-foreground: var(--color-brand-200);
-    --sidebar: #031f1e;
-  }
+:root.dark {
+  --background: var(--color-ink-950);
+  --foreground: var(--color-ink-100);
+  --card: var(--color-ink-900);
+  --card-foreground: var(--color-ink-100);
+  --muted: var(--color-ink-800);
+  --muted-foreground: var(--color-ink-300);
+  --border: var(--color-ink-700);
+  --primary: var(--color-brand-500);
+  --primary-hover: var(--color-brand-400);
+  --primary-foreground: var(--color-brand-950);
+  --primary-soft: color-mix(in oklab, var(--color-brand-500) 14%, transparent);
+  --primary-soft-foreground: var(--color-brand-200);
+  --sidebar: #031f1e;
 }
 
 @theme inline {
