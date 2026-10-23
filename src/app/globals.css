@@ -1,26 +1,154 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   DESIGN TOKENS — theme "teal"
+   Lớp 1: palette thô (brand / garlic / ink / trạng thái)
+   Lớp 2: token ngữ nghĩa (background, primary, border...) — component chỉ dùng lớp này
+   Đổi theme = đổi lớp 2, không đụng component.
+   ========================================================================== */
+
+@theme static {
+  /* Brand: teal */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+  --color-brand-950: #042f2e;
+
+  /* Accent: "garlic" — kem/hổ phách ấm, đối trọng với teal lạnh */
+  --color-garlic-50: #fdf8ee;
+  --color-garlic-100: #faefd4;
+  --color-garlic-200: #f4dca6;
+  --color-garlic-300: #ecc371;
+  --color-garlic-400: #e3a63f;
+  --color-garlic-500: #d68a1e;
+  --color-garlic-600: #b86c16;
+
+  /* Neutral: ink — xám pha teal để hợp tông */
+  --color-ink-50: #f6f9f9;
+  --color-ink-100: #eaf0f0;
+  --color-ink-200: #d3dedf;
+  --color-ink-300: #aebfc1;
+  --color-ink-400: #809597;
+  --color-ink-500: #5f7476;
+  --color-ink-600: #4a5b5d;
+  --color-ink-700: #3b4a4c;
+  --color-ink-800: #2a3638;
+  --color-ink-900: #1b2527;
+  --color-ink-950: #0f1617;
+
+  /* Trạng thái */
+  --color-success-50: #ecfdf3;
+  --color-success-600: #16a34a;
+  --color-warning-50: #fffbeb;
+  --color-warning-600: #d97706;
+  --color-danger-50: #fef2f2;
+  --color-danger-600: #dc2626;
+  --color-info-50: #eff6ff;
+  --color-info-600: #2563eb;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-serif, Georgia, "Times New Roman", serif;
+  --radius-card: 1rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-ink-50);
+  --foreground: var(--color-ink-900);
+  --card: #ffffff;
+  --card-foreground: var(--color-ink-900);
+  --muted: var(--color-ink-100);
+  --muted-foreground: var(--color-ink-500);
+  --border: var(--color-ink-200);
+  --ring: var(--color-brand-500);
+  --primary: var(--color-brand-600);
+  --primary-hover: var(--color-brand-700);
+  --primary-foreground: #ffffff;
+  --primary-soft: var(--color-brand-50);
+  --primary-soft-foreground: var(--color-brand-800);
+  --accent: var(--color-garlic-400);
+  --accent-foreground: var(--color-ink-950);
+  --sidebar: var(--color-brand-950);
+  --sidebar-foreground: var(--color-brand-100);
+  --sidebar-active: var(--color-brand-800);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-ink-950);
+    --foreground: var(--color-ink-100);
+    --card: var(--color-ink-900);
+    --card-foreground: var(--color-ink-100);
+    --muted: var(--color-ink-800);
+    --muted-foreground: var(--color-ink-300);
+    --border: var(--color-ink-700);
+    --primary: var(--color-brand-500);
+    --primary-hover: var(--color-brand-400);
+    --primary-foreground: var(--color-brand-950);
+    --primary-soft: color-mix(in oklab, var(--color-brand-500) 14%, transparent);
+    --primary-soft-foreground: var(--color-brand-200);
+    --sidebar: #031f1e;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-active: var(--sidebar-active);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Nền hero: gradient teal + lớp hạt nhẹ */
+.bg-hero {
+  background:
+    radial-gradient(
+      60rem 30rem at 85% -10%,
+      color-mix(in oklab, var(--color-brand-400) 45%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      40rem 24rem at 0% 100%,
+      color-mix(in oklab, var(--color-garlic-300) 28%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(160deg, var(--color-brand-900), var(--color-brand-950));
 }

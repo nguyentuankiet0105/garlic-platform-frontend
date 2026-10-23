@@ -1,0 +1,47 @@
+import type { Post } from "../types";
+
+export const SEED_POSTS: Post[] = [
+  {
+    id: "c1",
+    slug: "cach-bao-quan-toi-kho-6-thang",
+    kind: "guide",
+    title: "Cách bảo quản tỏi khô 6 tháng không mọc mầm",
+    excerpt: "Độ ẩm, thông gió và bao bì — ba yếu tố đại lý nào cũng cần nắm trước mùa mưa.",
+    readingMinutes: 5,
+    publishedAt: "2026-10-02",
+    author: "Ban kỹ thuật",
+  },
+  {
+    id: "c2",
+    slug: "phan-biet-toi-co-don-that",
+    kind: "guide",
+    title: "Phân biệt tỏi cô đơn Lý Sơn thật và tỏi trộn",
+    excerpt: "Kích thước củ, mùi và vết cắt: 4 dấu hiệu nhận biết nhanh khi nhập hàng.",
+    productSlug: "toi-co-don-ly-son",
+    readingMinutes: 4,
+    publishedAt: "2026-09-21",
+    author: "Ban kỹ thuật",
+  },
+  {
+    id: "c3",
+    slug: "review-toi-phi-giong-gion",
+    kind: "review",
+    title: "Tỏi phi giòn lâu, không ỉu sau 2 tuần mở hũ",
+    excerpt: "Đại lý tại Đà Nẵng chia sẻ sau 3 lần nhập liên tiếp cho chuỗi bún mì.",
+    productSlug: "toi-phi",
+    readingMinutes: 2,
+    publishedAt: "2026-10-10",
+    author: "Đại lý Hải Châu",
+    verifiedPurchase: true,
+  },
+  {
+    id: "c4",
+    slug: "bang-gia-theo-cap-dai-ly",
+    kind: "guide",
+    title: "Bảng giá sỉ theo cấp đại lý: lên cấp thế nào?",
+    excerpt: "Ba cấp đại lý, ngưỡng sản lượng và hạn mức công nợ tương ứng.",
+    readingMinutes: 3,
+    publishedAt: "2026-10-15",
+    author: "Phòng kinh doanh",
+  },
+];

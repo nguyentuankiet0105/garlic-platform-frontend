@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Giữ default ổn định: tắt cacheComponents / partialPrefetching của scaffold
+  // để layout có thể đọc cookie/session mà không phải bọc Suspense từng chỗ.
+  // Bật lại khi bắt đầu tối ưu caching cho Storefront.
   turbopack: {
     rules: {
       "*.css": {
