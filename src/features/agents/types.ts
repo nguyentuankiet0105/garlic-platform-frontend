@@ -13,3 +13,10 @@ export const TIER_LABEL: Record<AgentTier, string> = {
   T2: "Cấp 2 — Đại lý",
   T3: "Cấp 3 — Đại lý chiến lược",
 };
+
+/** Tên hạng ngắn theo design (Đồng / Bạc / Vàng). */
+export const TIER_NAME: Record<AgentTier, string> = {
+  T1: "Đồng",
+  T2: "Bạc",
+  T3: "Vàng",
+};

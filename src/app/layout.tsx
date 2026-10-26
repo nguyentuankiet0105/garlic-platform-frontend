@@ -1,8 +1,23 @@
 import type { Metadata, Viewport } from "next";
+import { Be_Vietnam_Pro, Lora } from "next/font/google";
 import type { ReactNode } from "react";
 import { SITE } from "@/shared/config/site";
 import { AppProviders } from "@/shared/providers";
 import "./globals.css";
+
+// Cả hai font đều có subset "vietnamese" (đủ dấu chồng ặ, ỗ, ữ).
+const beVietnam = Be_Vietnam_Pro({
+  subsets: ["vietnamese", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-be-vietnam",
+  display: "swap",
+});
+const lora = Lora({
+  subsets: ["vietnamese", "latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-lora",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: { default: `${SITE.name} — ${SITE.tagline}`, template: `%s · ${SITE.name}` },
@@ -11,8 +26,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0f766e" },
-    { media: "(prefers-color-scheme: dark)", color: "#042f2e" },
+    { media: "(prefers-color-scheme: light)", color: "#faf7f0" },
+    { media: "(prefers-color-scheme: dark)", color: "#131a15" },
   ],
 };
 
@@ -30,7 +45,7 @@ const THEME_INIT_SCRIPT = `
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi" suppressHydrationWarning>
+    <html lang="vi" className={`${beVietnam.variable} ${lora.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>

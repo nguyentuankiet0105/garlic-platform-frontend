@@ -4,6 +4,8 @@ export const ROUTES = {
   login: "/login",
   becomeAgent: "/become-agent",
   pendingApproval: "/pending-approval",
+  forgotPassword: "/forgot-password",
+  resetPassword: "/reset-password",
 
   storefront: {
     products: "/products",

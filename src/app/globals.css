@@ -1,102 +1,117 @@
 @import "tailwindcss";
 
 /* Dark mode điều khiển bằng class .dark trên <html> (xem ThemeProvider),
-   không phụ thuộc prefers-color-scheme nữa để hỗ trợ nút toggle thủ công. */
+   không phụ thuộc prefers-color-scheme để hỗ trợ nút toggle thủ công. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ==========================================================================
-   DESIGN TOKENS — theme "teal"
-   Lớp 1: palette thô (brand / garlic / ink / trạng thái)
-   Lớp 2: token ngữ nghĩa (background, primary, border...) — component chỉ dùng lớp này
+   DESIGN TOKENS — "Tỏi Mộc" (design system v0.1)
+   Nền ngà ấm như vỏ tỏi khô · xanh lá tỏi làm màu hành động · đất nung chỉ làm điểm nhấn.
+   Lớp 1: palette thô (brand / garlic / trạng thái / cấp đại lý)
+   Lớp 2: token ngữ nghĩa (background, primary, border...) — component chỉ dùng lớp này.
    Đổi theme = đổi lớp 2, không đụng component.
    ========================================================================== */
 
 @theme static {
-  /* Brand: teal */
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-200: #99f6e4;
-  --color-brand-300: #5eead4;
-  --color-brand-400: #2dd4bf;
-  --color-brand-500: #14b8a6;
-  --color-brand-600: #0d9488;
-  --color-brand-700: #0f766e;
-  --color-brand-800: #115e59;
-  --color-brand-900: #134e4a;
-  --color-brand-950: #042f2e;
+  /* Brand: xanh lá tỏi. 700 = --primary, 800 = hover */
+  --color-brand-50: #f3f8f1;
+  --color-brand-100: #e5eee2;
+  --color-brand-200: #cfe0cb;
+  --color-brand-300: #a9cfa2;
+  --color-brand-400: #7bb274;
+  --color-brand-500: #4f8a5b;
+  --color-brand-600: #3b7146;
+  --color-brand-700: #2e5b39;
+  --color-brand-800: #234630;
+  --color-brand-900: #1a3425;
+  --color-brand-950: #11221a;
 
-  /* Accent: "garlic" — kem/hổ phách ấm, đối trọng với teal lạnh */
-  --color-garlic-50: #fdf8ee;
-  --color-garlic-100: #faefd4;
-  --color-garlic-200: #f4dca6;
-  --color-garlic-300: #ecc371;
-  --color-garlic-400: #e3a63f;
-  --color-garlic-500: #d68a1e;
-  --color-garlic-600: #b86c16;
+  /* "garlic" = đất nung (accent). 500 = --accent, 100 = accent-soft */
+  --color-garlic-50: #fbf3ec;
+  --color-garlic-100: #f5e6db;
+  --color-garlic-200: #e9cdb8;
+  --color-garlic-300: #d9a98a;
+  --color-garlic-400: #c07c52;
+  --color-garlic-500: #9e4f2b;
+  --color-garlic-600: #84401f;
+  --color-garlic-700: #6b3319;
 
-  /* Neutral: ink — xám pha teal để hợp tông */
-  --color-ink-50: #f6f9f9;
-  --color-ink-100: #eaf0f0;
-  --color-ink-200: #d3dedf;
-  --color-ink-300: #aebfc1;
-  --color-ink-400: #809597;
-  --color-ink-500: #5f7476;
-  --color-ink-600: #4a5b5d;
-  --color-ink-700: #3b4a4c;
-  --color-ink-800: #2a3638;
-  --color-ink-900: #1b2527;
-  --color-ink-950: #0f1617;
+  /* Cấp đại lý: chip nền đặc, chữ trắng (đạt 4.5:1) */
+  --color-tier-bronze: #9e4f2b;
+  --color-tier-silver: #4a5560;
+  --color-tier-gold: #7a5c00;
 
   /* Trạng thái */
-  --color-success-50: #ecfdf3;
-  --color-success-600: #16a34a;
-  --color-warning-50: #fffbeb;
-  --color-warning-600: #d97706;
-  --color-danger-50: #fef2f2;
-  --color-danger-600: #dc2626;
-  --color-info-50: #eff6ff;
-  --color-info-600: #2563eb;
+  --color-success-50: #e5eee2;
+  --color-success-600: #234630;
+  --color-warning-50: #fbefd5;
+  --color-warning-600: #7a4f00;
+  --color-warning-border: #e8d3a0;
+  --color-danger-50: #fdebe9;
+  --color-danger-600: #b42318;
+  --color-danger-border: #f3c3bd;
+  --color-info-50: #e4eef8;
+  --color-info-600: #1d5a91;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: ui-serif, Georgia, "Times New Roman", serif;
-  --radius-card: 1rem;
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-lora), ui-serif, Georgia, "Times New Roman", serif;
+
+  --radius-sm: 6px;
+  --radius-card: 1rem; /* 16px: panel, card, dialog */
 }
 
 :root {
-  --background: var(--color-ink-50);
-  --foreground: var(--color-ink-900);
+  --background: #faf7f0;
+  --foreground: #1e2620;
   --card: #ffffff;
-  --card-foreground: var(--color-ink-900);
-  --muted: var(--color-ink-100);
-  --muted-foreground: var(--color-ink-500);
-  --border: var(--color-ink-200);
-  --ring: var(--color-brand-500);
-  --primary: var(--color-brand-600);
-  --primary-hover: var(--color-brand-700);
+  --card-foreground: #1e2620;
+  --muted: #f3eee3;
+  --muted-foreground: #565e52;
+  --border: #e3ddcf;
+  --border-strong: #cfc7b5;
+  --ring: #2e5b39;
+  --ring-soft: #cfe0cb;
+  --primary: #2e5b39;
+  --primary-hover: #234630;
   --primary-foreground: #ffffff;
-  --primary-soft: var(--color-brand-50);
-  --primary-soft-foreground: var(--color-brand-800);
-  --accent: var(--color-garlic-400);
-  --accent-foreground: var(--color-ink-950);
-  --sidebar: var(--color-brand-950);
-  --sidebar-foreground: var(--color-brand-100);
-  --sidebar-active: var(--color-brand-800);
+  --primary-soft: #e5eee2;
+  --primary-soft-foreground: #234630;
+  --accent: #9e4f2b;
+  --accent-foreground: #ffffff;
+  --accent-soft: #f5e6db;
+  --placeholder-image: #efe7d6;
+  --placeholder-image-foreground: #6b5d43;
+  --inverse: #1e2620;
+  --inverse-foreground: #d8ddd3;
+  --sidebar: #1e2620;
+  --sidebar-foreground: #d8ddd3;
+  --sidebar-active: #2e5b39;
 }
 
 :root.dark {
-  --background: var(--color-ink-950);
-  --foreground: var(--color-ink-100);
-  --card: var(--color-ink-900);
-  --card-foreground: var(--color-ink-100);
-  --muted: var(--color-ink-800);
-  --muted-foreground: var(--color-ink-300);
-  --border: var(--color-ink-700);
-  --primary: var(--color-brand-500);
-  --primary-hover: var(--color-brand-400);
-  --primary-foreground: var(--color-brand-950);
-  --primary-soft: color-mix(in oklab, var(--color-brand-500) 14%, transparent);
+  --background: #131a15;
+  --foreground: #edefe8;
+  --card: #1a221c;
+  --card-foreground: #edefe8;
+  --muted: #232c25;
+  --muted-foreground: #a9b2a4;
+  --border: #2f3a32;
+  --border-strong: #43514a;
+  --ring: #7bb274;
+  --ring-soft: color-mix(in oklab, var(--color-brand-400) 30%, transparent);
+  --primary: #4f8a5b;
+  --primary-hover: #5c9b68;
+  --primary-foreground: #08130b;
+  --primary-soft: color-mix(in oklab, var(--color-brand-400) 16%, transparent);
   --primary-soft-foreground: var(--color-brand-200);
-  --sidebar: #031f1e;
+  --accent: #d9a98a;
+  --accent-foreground: #2a140a;
+  --accent-soft: color-mix(in oklab, var(--color-garlic-300) 16%, transparent);
+  --placeholder-image: #232c25;
+  --placeholder-image-foreground: #a9b2a4;
+  --inverse: #0c110d;
+  --inverse-foreground: #c3cabd;
+  --sidebar: #0c110d;
 }
 
 @theme inline {
@@ -107,7 +122,9 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-ring: var(--ring);
+  --color-ring-soft: var(--ring-soft);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
@@ -115,6 +132,11 @@
   --color-primary-soft-foreground: var(--primary-soft-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-placeholder-image: var(--placeholder-image);
+  --color-placeholder-image-foreground: var(--placeholder-image-foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-active: var(--sidebar-active);
@@ -131,6 +153,7 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
   :focus-visible {
@@ -139,18 +162,22 @@
   }
 }
 
-/* Nền hero: gradient teal + lớp hạt nhẹ */
-.bg-hero {
-  background:
-    radial-gradient(
-      60rem 30rem at 85% -10%,
-      color-mix(in oklab, var(--color-brand-400) 45%, transparent),
-      transparent 60%
-    ),
-    radial-gradient(
-      40rem 24rem at 0% 100%,
-      color-mix(in oklab, var(--color-garlic-300) 28%, transparent),
-      transparent 60%
-    ),
-    linear-gradient(160deg, var(--color-brand-900), var(--color-brand-950));
+/* Skeleton loading (design system: "Tabs & Skeleton") */
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.skeleton {
+  background: var(--muted);
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
 }

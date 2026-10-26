@@ -1,6 +1,7 @@
-import type { AccountStatus, Role, Session } from "../types";
+import type { AccountStatus, Role, Session, SessionTier } from "../types";
 
 const ROLES: Role[] = ["ADMIN", "STAFF", "AGENT"];
+const TIERS: SessionTier[] = ["T1", "T2", "T3"];
 
 function base64UrlDecode(input: string): string {
   const b64 = input
@@ -31,6 +32,8 @@ export function decodeSession(token: string | undefined): Session | null {
       role,
       // Auth service hiện chưa phát claim `status` → mặc định ACTIVE (xem README, mục "Việc cần backend")
       status: (p.status as AccountStatus | undefined) ?? "ACTIVE",
+      // TODO: xác nhận với Auth service tên claim cấp đại lý (`tier`); thiếu claim → undefined
+      tier: TIERS.includes(p.tier as SessionTier) ? (p.tier as SessionTier) : undefined,
       expiresAt: p.exp,
     };
   } catch {
