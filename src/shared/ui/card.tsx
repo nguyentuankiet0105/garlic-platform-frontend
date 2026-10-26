@@ -1,12 +1,10 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/shared/lib/cn";
 
+/** Card phẳng: viền + bo 16px, không đổ bóng (shadow chỉ cho lớp nổi: dropdown, toast, dialog). */
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={cn("border-border bg-card text-card-foreground rounded-(--radius-card) border shadow-sm", className)}
-      {...props}
-    />
+    <div className={cn("border-border bg-card text-card-foreground rounded-(--radius-card) border", className)} {...props} />
   );
 }
 
